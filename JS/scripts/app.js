@@ -38,16 +38,18 @@ function Snap() {
   }
 
   // this funcation creates the card deck from the Variables - then calls the shuffle function
+  // Maybe use
   function createDeck(numDecks) {
 
     for (let i = 0; i < numDecks; i++) {
-      for (let j = 0; j < suits.length; j++) {
-        for (let x = 0; x < values.length; x++) {
-          var card = { rank: values[x], suit: suits[j] }
+      suits.forEach((suit) => {
+        values.forEach((value)=> {
+          const card = { rank: value, suit: suit }
           snapDeck.push(card)
-        }
-      }
+        })
+      })
     }
+    console.log(snapDeck)
     shuffleDeck(snapDeck)
   }
 
