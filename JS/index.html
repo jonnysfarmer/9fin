@@ -1,12 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src='scripts/app.js'></script>
   <title>Snap</title>
 </head>
+
 <body>
-  
+  <div>
+    <h1>Welcome to JS SNAP</h1>
+    <label>Number of decks to play with</label>
+    <input class='numOfDecks'></input>
+    <button class='newGame'>New Game</button>
+    <hr>
+  </div>
+  <div>
+    <h3>Game Info</h3>
+    <div>
+      <p>Number of Cards in Deck</p>
+      <p class='deckNum'>0</p>
+    </div>
+    <div>
+      <p>Number of Cards in Snap Pot</p>
+      <p class='snapPotNum'>0</p>
+    </div>
+    <div>
+      <p class='lastCard'></p>
+      <p class='currentCard'></p>
+      <button class='nextCard'>Next Card</button>
+    </div>
+  </div>
+  <div>
+    <div>
+      <h3>Player 1</h3>
+      <p class='cardsP1'>Number of cards: 0</p>
+      <button class='snapP1'>Snap</button>
+    </div>
+    <div>
+      <h3>Player 2</h3>
+      <p class='cardsP2'>Number of cards: 0</p>
+      <button class='snapP2'>Snap</button>
+    </div>
+  </div>
+
 </body>
+
 </html>
