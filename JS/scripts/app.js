@@ -35,7 +35,6 @@ function Snap() {
       snapDeck[location1] = snapDeck[location2]
       snapDeck[location2] = temp
     }
-    console.log(snapDeck)
   }
 
   // this funcation creates the card deck from the Variables - then calls the shuffle function
@@ -116,7 +115,6 @@ function Snap() {
   }
 
   
-
   // Launchs on click New game.  
   function Launch() {
 
