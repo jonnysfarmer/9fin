@@ -1,15 +1,7 @@
-// Plan
-// Create Deck - DONE
-// user selects number of Decks and creates snapCard Deck
-// Shuffle Cards - DONE
-// PLAY SNAP
-// Card turn over on timer / command / button
-// Display last 2 cards - push these to Cards in play Array
-// on succesful snap, 
-
 
 function Snap() {
 
+  // Get all my elements from the DOM
   const newGame = document.querySelector('.newGame')
   const numOfDecks = document.querySelector('.numOfDecks')
   const deckNum = document.querySelector('.deckNum')
@@ -24,7 +16,7 @@ function Snap() {
   const error = document.querySelector('.error')
 
 
-
+  // Global Variables
   const suits = ['diamonds', 'clubs', 'hearts', 'spades']
   const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
   let snapDeck = []
@@ -33,7 +25,7 @@ function Snap() {
   let p2Pot = []
 
 
-  // Shuffle function swaps locations at random (200 times) of 2 cards
+  // Shuffle function swaps 2 cards locations at random (200 times)
   function shuffleDeck(snapDeck) {
     for (let i = 0; i < 200; i++) {
       const location1 = Math.floor((Math.random() * snapDeck.length))
@@ -52,7 +44,7 @@ function Snap() {
     for (let i = 0; i < numDecks; i++) {
       for (let j = 0; j < suits.length; j++) {
         for (let x = 0; x < values.length; x++) {
-          var card = { rank: values[x], suit: suits[i] }
+          var card = { rank: values[x], suit: suits[j] }
           snapDeck.push(card)
         }
       }
@@ -60,33 +52,7 @@ function Snap() {
     shuffleDeck(snapDeck)
   }
 
-  function newCard() {
-    const newCard = snapDeck.pop()
-    currentCard.innerHTML = `Current card is ${newCard.rank} and suit ${newCard.suit}`
-    if (snapPot.length >= 1) {
-      const last = snapPot.length - 1
-      lastCard.innerHTML = `Last card is ${snapPot[last].rank} and suit ${snapPot[last].suit}`
-    }
-    snapPot.push(newCard)
-    deckNum.innerHTML = snapDeck.length
-    snapPotNum.innerHTML = snapPot.length
-    error.innerHTML = ''
-    console.log(snapPot)
-  }
-
-  function snap(pot, card) {
-    if (snapPot.length < 2) return error.innerHTML = 'Not enough cards to Snap'
-    const i = snapPot.length - 1
-    if (snapPot[i].suit === snapPot[i - 1].suit) {
-      pot.push(...snapPot)
-      snapPot = []
-      snapPotNum.innerHTML = snapPot.length
-      card.innerHTML = pot.length
-    } else {
-      alert('Not snap')
-    }
-  }
-
+  // Reset Function
   function reset() {
     snapDeck = []
     snapPot = []
@@ -99,11 +65,61 @@ function Snap() {
     error.innerHTML = ''
     cardsP1.innerHTML = 'Numer of Cards: 0'
     cardsP2.innerHTML = 'Numer of Cards: 0'
+    
   }
 
+  // End Game Logic
+  function endGame() {
+    if (p1Pot.length === p2Pot.length) {
+      alert('Game Over, it is a Draw')
+      reset()
+    } else if (p1Pot.length > p2Pot.length) {
+      alert('Game Over, Player 1 Won')
+      reset()
+    } else {
+      alert('Game Over, Player 2 Won')
+      reset()
+    }
+  }
 
-  // Launchs on click New game.  Creates Deck and Shuffels it
+  // This deals a new card and adds it to the snapDeck.  Dislays relevent Info
+  function newCard() {
+    if (snapDeck.length === 0) {
+      endGame()
+    }
+    const newCard = snapDeck.pop()
+    currentCard.innerHTML = `Current card is ${newCard.rank} and suit ${newCard.suit}`
+    if (snapPot.length >= 1) {
+      const last = snapPot.length - 1
+      lastCard.innerHTML = `Last card is ${snapPot[last].rank} and suit ${snapPot[last].suit}`
+    }
+    snapPot.push(newCard)
+    deckNum.innerHTML = snapDeck.length
+    snapPotNum.innerHTML = snapPot.length
+    error.innerHTML = ''
+  }
+
+  // Snap function for both buttons, if successfull, pushes Pot into players pot.  Updates Info.
+  function snap(pot, card) {
+    if (snapPot.length < 2) return error.innerHTML = 'Not enough cards to Snap'
+
+    const i = snapPot.length - 1
+    if (snapPot[i].suit === snapPot[i - 1].suit) {
+      pot.push(...snapPot)
+      snapPot = []
+      snapPotNum.innerHTML = snapPot.length
+      card.innerHTML = pot.length
+    } else {
+      error.innerHTML = 'Not Snap'
+
+    }
+  }
+
+  
+
+  // Launchs on click New game.  
   function Launch() {
+
     newGame.addEventListener('mousedown', () => {
       reset()
       const numDecks = numOfDecks.value
@@ -111,15 +127,15 @@ function Snap() {
       deckNum.innerHTML = snapDeck.length
       snapPotNum.innerHTML = snapPot.length
       nextCard.addEventListener('mousedown', newCard)
-      snapP1.addEventListener('mousedown', () => (snap(p1Pot, cardsP1)))
-      snapP2.addEventListener('mousedown', () => (snap(p2Pot, cardsP2)))
+      snapP1.addEventListener('mousedown', ()=>(snap(p1Pot, cardsP1)))
+      snapP2.addEventListener('mousedown', ()=>(snap(p2Pot, cardsP2)))
     })
   }
 
   Launch()
 
-}
 
+}
 
 
 window.addEventListener('DOMContentLoaded', Snap)
