@@ -31,12 +31,21 @@ def draw_card():
         end = len(snapPot) - 1
         print(snapPot[end], snapPot[end - 1])
 
+def end_game():
+    if len(p1Pot) == len(p1Pot):
+        print('Game Over, it is a Draw')
+    elif len(p1Pot) > len(p2Pot):
+        print('Game Over, Player 1 Won')
+    elif len(p2Pot) > len(p1Pot):
+        print('Game Over, Player 2 Won')
+
 
 create_deck()
 draw_card()
 draw_card()
 draw_card()
 draw_card()
+end_game()
 
 
 
