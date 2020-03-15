@@ -3,7 +3,7 @@ import random
 import itertools
 
 # Asks for Integer for number of decks you want to play with
-numDecksStr = input('Please input the number of decks you want to play with ')
+numDecksStr = input('Welcome to Snap! Please input the number of decks you want to play with ')
 numDecks = int(numDecksStr)
 
 # Global Varibales
@@ -28,10 +28,10 @@ def new_card():
     snapPot.append(lastCard)
 
     if len(snapPot) == 1:
-        print(snapPot)
+        print(snapPot[0][1], ' of ', snapPot[0][0])
     elif len(snapPot) > 1:
         end = len(snapPot) - 1
-        print(snapPot[end], snapPot[end - 1])
+        print(snapPot[end][1], ' of ', snapPot[end][0], 'and', snapPot[end-1][1], ' of ', snapPot[end-1][0])
 
 # End game logic
 def end_game():
