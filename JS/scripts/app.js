@@ -101,7 +101,6 @@ function Snap() {
 
   // Snap function for both buttons, if successfull, pushes Pot into players pot.  Updates Info.
   function snap(pot, card) {
-    if (snapPot.length < 2) return error.innerHTML = 'Not enough cards to Snap'
 
     const i = snapPot.length - 1
     if (snapPot[i].rank === snapPot[i - 1].rank) {
