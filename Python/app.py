@@ -16,9 +16,7 @@ p2Pot = []
 # and shuffles it
 def create_deck():
     for x in range(numDecks):
-        # deck = list(itertools.product(['diamonds', 'clubs', 'hearts', 'spades'], ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']))
-        deck = list(itertools.product(['diamonds'], ['2', '3', '4']))
-
+        deck = list(itertools.product(['diamonds', 'clubs', 'hearts', 'spades'], ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']))
         snapDeck.extend(deck)
     random.shuffle(snapDeck)
     return snapDeck
@@ -44,10 +42,10 @@ def end_game():
     elif len(p2Pot) > len(p1Pot):
         print('Game Over, Player 2 Won')
 
-# Snap Function - currently matches suits for testing
+# Snap Function - matches numbers
 def snap(pot):
     end = len(snapPot) - 1
-    if snapPot[end][0] == snapPot[end - 1][0]:
+    if snapPot[end][1] == snapPot[end - 1][1]:
         pot.extend(snapPot)
         snapPot.clear()
         print('SNAP')
