@@ -25,9 +25,9 @@ function Snap() {
   let p2Pot = []
 
 
-  // Shuffle function swaps 2 cards locations at random (200 times)
+  // Shuffle function swaps 2 cards locations at random (2000 times)
   function shuffleDeck(snapDeck) {
-    for (let i = 0; i < 200; i++) {
+    for (let i = 0; i < 2000; i++) {
       const location1 = Math.floor((Math.random() * snapDeck.length))
       const location2 = Math.floor((Math.random() * snapDeck.length))
       const temp = snapDeck[location1]
