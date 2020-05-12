@@ -109,6 +109,8 @@ function Snap() {
       snapPotNum.innerHTML = snapPot.length
       card.innerHTML = pot.length
       error.innerHTML = 'Snap'
+      lastCard.innerHTML = ''
+      currentCard.innerHTML = ''
     } else {
       error.innerHTML = 'Not Snap'
     }
